@@ -13,8 +13,8 @@ def load_data():
     exploded_track_df = df.explode("genres")
     return exploded_track_df
 
-genre_names = ['Dance Pop', 'Electronica', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
-audio_feats = ["Acústica", "Bailabilidad", "Instrumentabilidad", "Valencia(medida de felicidad)", "Duración"]
+genre_names = ['Dance Pop', 'Electrónica', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
+audio_feats = ["acustica", "bailabilidad", "energía", "instrumentabilidad", "valencia", "tiempo"]
 
 exploded_track_df = load_data()
 
@@ -33,43 +33,50 @@ def n_neighbors_uri_audio(genre, start_year, end_year, test_feat):
     return uris, audios
 
 
-title = "Modelo de recomendación de canciones"
-st.title(title)
+st.markdown("<h1 style='text-align: center; color: #A2BDF1;'>Modelo de recomedación de canciones</h1>", unsafe_allow_html=True)
 
-st.write("")
 st.markdown("##")
+
+st.markdown("***Elija el género***")
+genre = st.radio(
+    "",
+    genre_names, index=genre_names.index("Pop"))
+
 
 with st.container():
     col1, col2,col3,col4 = st.columns((2,0.5,0.5,0.5))
     with col3:
-        st.markdown("***Choose your genre:***")
+        st.markdown("***Elija el género:***")
         genre = st.radio(
             "",
             genre_names, index=genre_names.index("Pop"))
     with col1:
-        st.markdown("***Choose features to customize:***")
+        st.markdown("***Elija las características:***")
         start_year, end_year = st.slider(
             'Select the year range',
             1990, 2019, (2015, 2019)
         )
-        acústica = st.slider(
-            'Acousticness',
+        acustica = st.slider(
+            'Acústica',
             0.0, 1.0, 0.5)
         bailabilidad = st.slider(
-            'Danceability',
+            'Bailabilidad',
+            0.0, 1.0, 0.5)
+        energia = st.slider(
+            'Energía',
             0.0, 1.0, 0.5)
         instrumentabilidad = st.slider(
-            'Instrumentalness',
+            'Instrumentabilidad',
             0.0, 1.0, 0.0)
         valencia = st.slider(
-            'Valence',
+            'Valencia',
             0.0, 1.0, 0.45)
         tiempo = st.slider(
-            'Tempo',
+            'Tiempo',
             0.0, 244.0, 118.0)
 
 tracks_per_page = 6
-test_feat = [acustica, bailabilidad, instrumentabilidad, valencia, tiempo]
+test_feat = [acustica, bailabilidad, energia, instrumentabilidad, valencia, tiempo]
 uris, audios = n_neighbors_uri_audio(genre, start_year, end_year, test_feat)
 
 tracks = []
