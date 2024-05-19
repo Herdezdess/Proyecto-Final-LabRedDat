@@ -96,22 +96,22 @@ start_year, end_year = st.slider(
 )
 acousticness = st.slider(
     'Acústica',
-    0.0, 1.0, 0.0)
+    0.0, 1.0, 1.0)
 danceability = st.slider(
     'Bailabilidad',
-    0.0, 1.0, 0.5)
+    0.0, 1.0, 1.0)
 energy = st.slider(
     'Energía',
-    0.0, 1.0, 0.5)
+    0.0, 1.0, 1.0)
 instrumentalness = st.slider(
     'Instrumentabilidad',
-    0.0, 1.0, 0.0)
+    0.0, 1.0, 1.0)
 valence = st.slider(
     'Valencia',
-    0.0, 1.0, 0.45)
+    0.0, 1.0, 1.0)
 tempo = st.slider(
     'Tiempo',
-    0.0, 244.0, 118.0)
+    0.0, 244.0, 244.0)
 
 tracks_per_page = 6
 test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
