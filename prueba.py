@@ -84,43 +84,34 @@ st.markdown("<h1 style='text-align: center; color: #F74B66; text-shadow: 3px 3px
 
 st.markdown("##")
 
-#st.markdown("***Elija el género***")
-#genre = st.radio(
-#    "",
-#    genre_names, index=genre_names.index("Pop"))
+st.markdown("***Elija el género***")
+genre = st.radio(
+    "",
+    genre_names, index=genre_names.index("Pop"))
 
-
-with st.container():
-    col1, col2,col3,col4 = st.columns((2,0.5,0.5,0.5))
-    with col3:
-        st.markdown("***Elija el género:***")
-        genre = st.radio(
-            "",
-            genre_names, index=genre_names.index("Pop"))
-with col1:
-        st.markdown("***Choose features to customize:***")
-        start_year, end_year = st.slider(
-            'Seleccione el rango del año',
-            1990, 2019, (2015, 2019)
-        )
-        acousticness = st.slider(
-            'Acústica',
-            0.0, 1.0, 0.5)
-        danceability = st.slider(
-            'Bailabilidad',
-            0.0, 1.0, 0.5)
-        energy = st.slider(
-            'Energía',
-            0.0, 1.0, 0.5)
-        instrumentalness = st.slider(
-            'Instrumentabilidad',
-            0.0, 1.0, 0.0)
-        valence = st.slider(
-            'Valencia',
-            0.0, 1.0, 0.45)
-        tempo = st.slider(
-            'Tiempo',
-            0.0, 244.0, 118.0)
+st.markdown("***Choose features to customize:***")
+start_year, end_year = st.slider(
+    'Seleccione el rango del año',
+    1990, 2019, (1990, 2019)
+)
+acousticness = st.slider(
+    'Acústica',
+    0.0, 1.0, 0.0)
+danceability = st.slider(
+    'Bailabilidad',
+    0.0, 1.0, 0.5)
+energy = st.slider(
+    'Energía',
+    0.0, 1.0, 0.5)
+instrumentalness = st.slider(
+    'Instrumentabilidad',
+    0.0, 1.0, 0.0)
+valence = st.slider(
+    'Valencia',
+    0.0, 1.0, 0.45)
+tempo = st.slider(
+    'Tiempo',
+    0.0, 244.0, 118.0)
 
 tracks_per_page = 6
 test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
