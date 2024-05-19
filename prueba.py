@@ -6,6 +6,53 @@ import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Recomendación musical", page_icon="🎵", layout="wide")
 
+#diseño css y animación de los covichus
+custom_css = """
+<style>
+/* Bordes laterales */
+.stApp {
+    border-left: 200px solid #D7C7F7; /* Color del borde izquierdo */
+    border-right: 200px solid #D7C7F7; /* Color del borde derecho */
+}
+
+/* Animación del simbolo de radioactivo cayendo */
+@keyframes falling {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Estilo para los cuidado peligro */
+.falling-emoji {
+    position: fixed;
+    animation: falling 7s linear infinite;
+    font-size: 3em;
+}
+
+/* posición cuidado peligro */
+#emoji1 { left: 30px; }
+#emoji2 { left: 120px; }
+#emoji3 { right: 30px; }
+#emoji4 { right: 120px; }c
+</style>
+"""
+
+# Se agrega el diseño CSS a streamlit
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Aquí se agregan los simbolos de CUIDADO PELIGRO 
+st.markdown('<div class="falling-emoji" id="emoji1">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji2">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji3">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji4">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji1">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji2">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji3">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji4">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji1">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji2">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji3">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji4">🎵</div>', unsafe_allow_html=True)
+
 @st.cache(allow_output_mutation=True)
 def load_data():
     df = pd.read_csv("data/filtered_track_df.csv")
