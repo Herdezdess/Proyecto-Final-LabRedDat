@@ -80,7 +80,7 @@ def n_neighbors_uri_audio(genre, start_year, end_year, test_feat):
     return uris, audios
 
 
-st.markdown("<h1 style='text-align: center; color: #F74B66; text-shadow: 3px 3px #808080;'>- Modelo de recomendación de canciones-137 -</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #F74B66; text-shadow: 3px 3px #808080;'> Modelo de recomendación de canciones </h1>", unsafe_allow_html=True)
 
 st.markdown("##")
 
