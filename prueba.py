@@ -87,7 +87,7 @@ st.markdown("##")
 st.markdown("***Elija el género***")
 genre = st.radio(
     "",
-    genre_names, index=genre_names.index("Pop"))
+    genre_names, index=genre_names.index("Dance Pop"))
 
 st.markdown("***Choose features to customize:***")
 start_year, end_year = st.slider(
