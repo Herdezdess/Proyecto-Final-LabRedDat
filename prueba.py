@@ -84,10 +84,10 @@ st.markdown("<h1 style='text-align: center; color: #F74B66; text-shadow: 3px 3px
 
 st.markdown("##")
 
-st.markdown("***Elija el género***")
-genre = st.radio(
-    "",
-    genre_names, index=genre_names.index("Pop"))
+#st.markdown("***Elija el género***")
+#genre = st.radio(
+#    "",
+#    genre_names, index=genre_names.index("Pop"))
 
 
 with st.container():
