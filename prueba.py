@@ -89,7 +89,7 @@ genre = st.radio(
     "",
     genre_names, index=genre_names.index("Dance Pop"))
 
-st.markdown("***Choose features to customize:***")
+st.markdown("***Elija las características:***")
 start_year, end_year = st.slider(
     'Seleccione el rango del año',
     1990, 2019, (1990, 2019)
