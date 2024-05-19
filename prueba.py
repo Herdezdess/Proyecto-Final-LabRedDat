@@ -58,7 +58,7 @@ with st.container():
         bailabilidad = st.slider(
             'Danceability',
             0.0, 1.0, 0.5)
-        vnstrumentabilidad = st.slider(
+        instrumentabilidad = st.slider(
             'Instrumentalness',
             0.0, 1.0, 0.0)
         valencia = st.slider(
@@ -69,7 +69,7 @@ with st.container():
             0.0, 244.0, 118.0)
 
 tracks_per_page = 6
-test_feat = [acustica, bailabilidad, energia, instrumentabilidad, valencia, tiempo]
+test_feat = [acustica, bailabilidad, instrumentabilidad, valencia, tiempo]
 uris, audios = n_neighbors_uri_audio(genre, start_year, end_year, test_feat)
 
 tracks = []
