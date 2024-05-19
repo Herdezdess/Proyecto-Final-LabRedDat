@@ -82,6 +82,7 @@ def n_neighbors_uri_audio(genre, start_year, end_year, test_feat):
 
 st.markdown("<h1 style='text-align: center; color: #F74B66; text-shadow: 3px 3px #808080;'> Modelo de recomendación de canciones </h1>", unsafe_allow_html=True)
 
+st.markdown("A continuación se le pedirán ciertas características para hacer una predicción ")
 st.markdown("##")
 
 st.markdown("***Elija el género***")
