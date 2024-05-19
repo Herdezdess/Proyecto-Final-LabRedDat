@@ -60,8 +60,8 @@ def load_data():
     exploded_track_df = df.explode("genres")
     return exploded_track_df
 
-genre_names = ['Dance Pop', 'Electrónica', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
-audio_feats = ["acustica", "bailabilidad", "energía", "instrumentabilidad", "valencia", "tiempo"]
+genre_names = ['Dance Pop', 'Electronic', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
+audio_feats = ["acousticness", "danceability", "energy", "instrumentalness", "valence", "tempo"]
 
 exploded_track_df = load_data()
 
@@ -97,33 +97,33 @@ with st.container():
         genre = st.radio(
             "",
             genre_names, index=genre_names.index("Pop"))
-    with col1:
-        st.markdown("***Elija las características:***")
+with col1:
+        st.markdown("***Choose features to customize:***")
         start_year, end_year = st.slider(
-            'Select the year range',
+            'Seleccione el rango del año',
             1990, 2019, (2015, 2019)
         )
-        acustica = st.slider(
+        acousticness = st.slider(
             'Acústica',
             0.0, 1.0, 0.5)
-        bailabilidad = st.slider(
+        danceability = st.slider(
             'Bailabilidad',
             0.0, 1.0, 0.5)
-        energia = st.slider(
+        energy = st.slider(
             'Energía',
             0.0, 1.0, 0.5)
-        instrumentabilidad = st.slider(
+        instrumentalness = st.slider(
             'Instrumentabilidad',
             0.0, 1.0, 0.0)
-        valencia = st.slider(
+        valence = st.slider(
             'Valencia',
             0.0, 1.0, 0.45)
-        tiempo = st.slider(
+        tempo = st.slider(
             'Tiempo',
             0.0, 244.0, 118.0)
 
 tracks_per_page = 6
-test_feat = [acustica, bailabilidad, energia, instrumentabilidad, valencia, tiempo]
+test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
 uris, audios = n_neighbors_uri_audio(genre, start_year, end_year, test_feat)
 
 tracks = []
