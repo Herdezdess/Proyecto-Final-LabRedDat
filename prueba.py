@@ -13,8 +13,8 @@ def load_data():
     exploded_track_df = df.explode("genres")
     return exploded_track_df
 
-genre_names = ['Dance Pop', 'Electronic', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
-audio_feats = ["acousticness", "danceability", "energy", "instrumentalness", "valence", "tempo"]
+genre_names = ['Dance Pop', 'Electronica', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
+audio_feats = ["Acústica", "Bailabilidad", "Instrumentabilidad", "Valencia(medida de felicidad)", "Duración"]
 
 exploded_track_df = load_data()
 
@@ -33,10 +33,10 @@ def n_neighbors_uri_audio(genre, start_year, end_year, test_feat):
     return uris, audios
 
 
-title = "Song Recommendation Engine"
+title = "Modelo de recomendación de canciones"
 st.title(title)
 
-st.write("First of all, welcome! This is the place where you can customize what you want to listen to based on genre and several key audio features. Try playing around with different settings and listen to the songs recommended by our system!")
+st.write("")
 st.markdown("##")
 
 with st.container():
@@ -52,27 +52,24 @@ with st.container():
             'Select the year range',
             1990, 2019, (2015, 2019)
         )
-        acousticness = st.slider(
+        acústica = st.slider(
             'Acousticness',
             0.0, 1.0, 0.5)
-        danceability = st.slider(
+        bailabilidad = st.slider(
             'Danceability',
             0.0, 1.0, 0.5)
-        energy = st.slider(
-            'Energy',
-            0.0, 1.0, 0.5)
-        instrumentalness = st.slider(
+        vnstrumentabilidad = st.slider(
             'Instrumentalness',
             0.0, 1.0, 0.0)
-        valence = st.slider(
+        valencia = st.slider(
             'Valence',
             0.0, 1.0, 0.45)
-        tempo = st.slider(
+        tiempo = st.slider(
             'Tempo',
             0.0, 244.0, 118.0)
 
 tracks_per_page = 6
-test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
+test_feat = [acustica, bailabilidad, energia, instrumentabilidad, valencia, tiempo]
 uris, audios = n_neighbors_uri_audio(genre, start_year, end_year, test_feat)
 
 tracks = []
