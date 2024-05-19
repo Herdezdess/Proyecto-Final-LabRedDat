@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 
 @st.cache(allow_output_mutation=True)
 def load_data():
-    df = pd.read_csv("https://raw.githubusercontent.com/StarVeteran/Spotify-Recommender/main/data/filtered_track_df.csv")
+    df = pd.read_csv("https://raw.githubusercontent.com/Herdezdess/Proyecto-Final-LabRedDat/main/spotify_tracks.csv?token=GHSAT0AAAAAACSPJX46ALNVTTCB33FBIPAMZSKNUXA")
     df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
     exploded_track_df = df.explode("genres")
     return exploded_track_df
