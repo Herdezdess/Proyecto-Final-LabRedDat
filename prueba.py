@@ -91,7 +91,7 @@ genre = st.radio(
     genre_names, index=genre_names.index("Dance Pop"))
 
 with st.container():
-    col1, col2,col3,col4 = st.columns((2,0.5,0.5,0.5))
+    col1, col2,col3,col4 = st.columns((2,0.5,2,0.5))
     with col1:
         st.markdown("***Elija las características:***")
         start_year, end_year = st.slider(
