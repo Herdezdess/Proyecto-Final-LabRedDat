@@ -90,29 +90,38 @@ genre = st.radio(
     "",
     genre_names, index=genre_names.index("Dance Pop"))
 
-st.markdown("***Elija las características:***")
-start_year, end_year = st.slider(
-    'Seleccione el rango del año',
-    1990, 2019, (1990, 2019)
-)
-acousticness = st.slider(
-    'Acústica',
-    0.0, 1.0, 1.0)
-danceability = st.slider(
-    'Bailabilidad',
-    0.0, 1.0, 1.0)
-energy = st.slider(
-    'Energía',
-    0.0, 1.0, 1.0)
-instrumentalness = st.slider(
-    'Instrumentabilidad',
-    0.0, 1.0, 1.0)
-valence = st.slider(
-    'Valencia',
-    0.0, 1.0, 1.0)
-tempo = st.slider(
-    'Tiempo',
-    0.0, 244.0, 244.0)
+with st.container():
+    col1, col2,col3,col4 = st.columns((2,0.5,0.5,0.5))
+    with col1:
+        st.markdown("***Elija las características:***")
+        start_year, end_year = st.slider(
+            'Seleccione el rango del año',
+            1990, 2019, (1990, 2019)
+        )
+        acousticness = st.slider(
+            'Acústica',
+            0.0, 1.0, 1.0)
+        instrumentalness = st.slider(
+            'Instrumentabilidad',
+            0.0, 1.0, 1.0)
+        danceability = st.slider(
+            'Bailabilidad',
+            0.0, 1.0, 1.0)
+    with col3:
+        energy = st.slider(
+            'Energía',
+            0.0, 1.0, 1.0)
+        valence = st.slider(
+            'Valencia',
+            0.0, 1.0, 1.0)
+        tempo = st.slider(
+            'Tiempo',
+            0.0, 244.0, 244.0)
+
+
+
+
+
 
 tracks_per_page = 6
 test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
