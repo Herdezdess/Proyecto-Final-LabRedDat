@@ -65,7 +65,7 @@ def load_data():
     return exploded_track_df #retorno a df para que ajá se pueda hacer varias veces y no se muera
 
 #como temos varias caracteristicas, separamos los generos de las demás caracteristicas 
-genero_names = ['Dance Pop', 'Electronic', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
+genre_names = ['Dance Pop', 'Electronic', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
 audio_feats = ["acousticness", "danceability", "energy", "instrumentalness", "valence", "tempo"]
 
 #le damos nombre a lo anterior
