@@ -1,18 +1,70 @@
+#paquetes
 import streamlit as st
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 import plotly.express as px
 import streamlit.components.v1 as components
-
+#configuración de la pestaña
 st.set_page_config(page_title="Recomendación musical", page_icon="🎵", layout="wide")
 
-@st.cache(allow_output_mutation=True)
-def load_data():
-    df = pd.read_csv("data/filtered_track_df.csv")
-    df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])
-    exploded_track_df = df.explode("genres")
-    return exploded_track_df
+#diseño css y animación de los emojis flotantes
+custom_css = """
+<style>
+/* Bordes laterales */
+.stApp {
+    border-left: 200px solid #F74B66; /* Color del borde izquierdo */
+    border-right: 200px solid #F74B66; /* Color del borde derecho */
+}
 
+/* Animación de los emoji cayendo */
+@keyframes falling {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Estilo de los emojis */
+.falling-emoji {
+    position: fixed;
+    animation: falling 7s linear infinite;
+    font-size: 3em;
+}
+
+/* posición o */
+#emoji1 { left: 30px; }
+#emoji2 { left: 120px; }
+#emoji3 { right: 30px; }
+#emoji4 { right: 120px; }c
+</style>
+"""
+
+# Se agrega el diseño CSS a streamlit
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Aquí se agregan los emojis
+st.markdown('<div class="falling-emoji" id="emoji1">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji2">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji3">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji4">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji1">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji2">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji3">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji4">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji1">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji2">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji3">🎵</div>', unsafe_allow_html=True)
+st.markdown('<div class="falling-emoji" id="emoji4">🎵</div>', unsafe_allow_html=True)
+
+#guarda datos para optimizar el rendimiento de la aplicación
+@st.cache(allow_output_mutation=True)
+
+#definimos la función load_data que 
+def load_data():
+    df = pd.read_csv("data/filtered_track_df.csv")#primero lee el csv
+    df['genres'] = df.genres.apply(lambda x: [i[1:-1] for i in str(x)[1:-1].split(", ")])#tomamos la columna de genero y la transformamos en una cadena de texto, eliminamos los corchetes, definimos a la coma como separados y eliminamos las comillas.
+    exploded_track_df = df.explode("genres")#separamos cada canción por genero
+    return exploded_track_df #retorno a df para que ajá se pueda hacer varias veces y no se muera
+
+#como temos varias caracteristicas, separamos los generos de las demás caracteristicas 
 genre_names = ['Dance Pop', 'Electronic', 'Electropop', 'Hip Hop', 'Jazz', 'K-pop', 'Latin', 'Pop', 'Pop Rap', 'R&B', 'Rock']
 audio_feats = ["acousticness", "danceability", "energy", "instrumentalness", "valence", "tempo"]
 
@@ -33,43 +85,48 @@ def n_neighbors_uri_audio(genre, start_year, end_year, test_feat):
     return uris, audios
 
 
-title = "Song Recommendation Engine"
-st.title(title)
+st.markdown("<h1 style='text-align: center; color: #F74B66; text-shadow: 3px 3px #808080;'> Modelo de recomendación de canciones </h1>", unsafe_allow_html=True)
 
-st.write("First of all, welcome! This is the place where you can customize what you want to listen to based on genre and several key audio features. Try playing around with different settings and listen to the songs recommended by our system!")
+st.markdown("A continuación se le pedirán ciertas características para hacer una predicción ")
 st.markdown("##")
 
+st.markdown("***Elija el género***")
+genre = st.radio(
+    "",
+    genre_names, index=genre_names.index("Dance Pop"))
+
 with st.container():
-    col1, col2,col3,col4 = st.columns((2,0.5,0.5,0.5))
-    with col3:
-        st.markdown("***Choose your genre:***")
-        genre = st.radio(
-            "",
-            genre_names, index=genre_names.index("Pop"))
+    col1, col2,col3,col4 = st.columns((2,0.5,2,0.5))
     with col1:
-        st.markdown("***Choose features to customize:***")
+        st.markdown("***Elija las características:***")
         start_year, end_year = st.slider(
-            'Select the year range',
-            1990, 2019, (2015, 2019)
+            'Seleccione el rango del año',
+            1990, 2019, (1990, 2019)
         )
         acousticness = st.slider(
-            'Acousticness',
-            0.0, 1.0, 0.5)
-        danceability = st.slider(
-            'Danceability',
-            0.0, 1.0, 0.5)
-        energy = st.slider(
-            'Energy',
-            0.0, 1.0, 0.5)
+            'Acústica',
+            0.0, 1.0, 1.0)
         instrumentalness = st.slider(
-            'Instrumentalness',
-            0.0, 1.0, 0.0)
+            'Instrumentabilidad',
+            0.0, 1.0, 1.0)
+        danceability = st.slider(
+            'Bailabilidad',
+            0.0, 1.0, 1.0)
+    with col3:
+        energy = st.slider(
+            'Energía',
+            0.0, 1.0, 1.0)
         valence = st.slider(
-            'Valence',
-            0.0, 1.0, 0.45)
+            'Valencia',
+            0.0, 1.0, 1.0)
         tempo = st.slider(
-            'Tempo',
-            0.0, 244.0, 118.0)
+            'Tiempo',
+            0.0, 244.0, 244.0)
+
+
+
+
+
 
 tracks_per_page = 6
 test_feat = [acousticness, danceability, energy, instrumentalness, valence, tempo]
