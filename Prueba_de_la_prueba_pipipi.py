@@ -12,8 +12,8 @@ custom_css = """
 <style>
 /* Bordes laterales */
 .stApp {
-    border-left: 200px solid #F74B66; /* Color del borde izquierdo */
-    border-right: 200px solid #F74B66; /* Color del borde derecho */
+    border-left: 200px solid #F08784; /* Color del borde izquierdo */
+    border-right: 200px solid #F08784; /* Color del borde derecho */
 }
 
 /* Animación de los emoji cayendo */
